@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/pagination";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Search } from 'lucide-react';
+import { Bold, Search } from 'lucide-react';
 
 interface Post {
   id: number;
