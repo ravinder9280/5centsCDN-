@@ -25,18 +25,24 @@ export const login = async (email: string, password: string): Promise<User> => {
   };
 
   // Store mock JWT token
-  localStorage.setItem('token', 'mock-jwt-token');
-  localStorage.setItem('user', JSON.stringify(user));
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('token', 'mock-jwt-token');
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 
   return user;
 };
 
 export const logout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('user');
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
 };
 
 export const getUser = (): User | null => {
+  if (typeof window === 'undefined') return null;
+
   const token = localStorage.getItem('token');
   if (!token) return null;
 
@@ -45,5 +51,7 @@ export const getUser = (): User | null => {
 };
 
 export const isAuthenticated = (): boolean => {
+  if (typeof window === 'undefined') return false;
+
   return !!localStorage.getItem('token');
 };
